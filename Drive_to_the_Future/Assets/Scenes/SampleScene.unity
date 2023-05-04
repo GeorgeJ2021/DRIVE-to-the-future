@@ -123,6 +123,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &24240665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1836039897307064, guid: 37bf6b4eaddee8d448771b63238e03d1, type: 3}
+  m_PrefabInstance: {fileID: 1910769282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &24240669
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24240665}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 492031f9cbc117d419c5271ccc50b76a, type: 3}
 --- !u!1 &41499882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,14 +1873,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fefceefe666bb4682b272ec8c5bdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 140
-  maxReverseSpeed: 45
-  accelerationMultiplier: 5
+  maxSpeed: 177
+  maxReverseSpeed: 74
+  accelerationMultiplier: 6
   maxSteeringAngle: 27
-  steeringSpeed: 0.5
-  brakeForce: 546
-  decelerationMultiplier: 8
-  handbrakeDriftMultiplier: 3
+  steeringSpeed: 0.581
+  brakeForce: 334
+  decelerationMultiplier: 5
+  handbrakeDriftMultiplier: 2
   bodyMassCenter: {x: 0, y: 0, z: 0}
   frontLeftMesh: {fileID: 238165759}
   frontLeftCollider: {fileID: 41499884}

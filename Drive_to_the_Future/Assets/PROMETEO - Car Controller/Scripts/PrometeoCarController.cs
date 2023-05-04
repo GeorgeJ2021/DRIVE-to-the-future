@@ -166,11 +166,13 @@ public class PrometeoCarController : MonoBehaviour
         playercar = new Controls();
 
         playercar.Car.Accelerate.performed += ctx => acceleratectrl();
+        playercar.Car.Accelerate.canceled += ctx => cancelacceleratectrl();
         playercar.Car.SteerRight.performed += ctx => TurnRctrl();
         playercar.Car.SteerRight.canceled += ctx => cancelTurnRctrl();
         playercar.Car.SteerLeft.performed += ctx => TurnLctrl();
         playercar.Car.SteerLeft.canceled += ctx => cancelTurnLctrl();
         playercar.Car.Deaccelerate.performed += ctx => Deacceleratectrl();
+        playercar.Car.Deaccelerate.canceled += ctx => canceldeacceleratectrl();
         playercar.Car.Handbrake.performed += ctx => handbrakectrl();
         playercar.Car.Handbrake.canceled += ctx => cancelhandbrakectrl();
 
@@ -373,10 +375,13 @@ public class PrometeoCarController : MonoBehaviour
         if(handbrakingval){
           CancelInvoke("DecelerateCar");
           deceleratingCar = false;
-          Handbrake();
+          Brakes();
+          //Handbrake();
+          Debug.Log("handbrake function executed");
         }
-        if(cancelhandbraking){
+        if(!handbrakingval){
           RecoverTraction();
+          //Debug.Log("handbrake released");
         }
 
         if((!deaccctrl && !accctrl) && !handbrakingval && !deceleratingCar){
@@ -423,13 +428,21 @@ public class PrometeoCarController : MonoBehaviour
     
     void acceleratectrl()
     {
-          Debug.Log("worked");
-          accctrl = true; 
-          deaccctrl = false;
+          //Debug.Log("worked");
+          if(!handbrakingval)
+          {
+             accctrl = true; 
+             deaccctrl = false;
+          }
+
+    }
+    void cancelacceleratectrl()
+    {
+      accctrl = false;
     }
     void TurnLctrl()
     {
-          Debug.Log("turn left worked");
+          //Debug.Log("turn left worked");
           turnL = true; 
     }
     void cancelTurnLctrl()
@@ -439,7 +452,7 @@ public class PrometeoCarController : MonoBehaviour
     }
     void TurnRctrl()
     {
-          Debug.Log("turn Right worked");
+          //Debug.Log("turn Right worked");
           turnR = true; 
     }
     void cancelTurnRctrl()
@@ -449,20 +462,24 @@ public class PrometeoCarController : MonoBehaviour
     }
     void Deacceleratectrl()
     {
-        Debug.Log("stopping");
+        //Debug.Log("stopping");
         deaccctrl = true;
         accctrl =false;
     }
+    void canceldeacceleratectrl()
+    {
+       deaccctrl = false;
+    }
     void handbrakectrl()
     {
-        Debug.Log("handbrake active");
+        //Debug.Log("handbrake active");
         handbrakingval = true;
-        cancelhandbraking = false;
+        //cancelhandbraking = false;
     }
     void cancelhandbrakectrl()
     {
         Debug.Log("Handbrake released");
-        cancelhandbraking = true;
+        //cancelhandbraking = true;
         handbrakingval = false;
     }
 
