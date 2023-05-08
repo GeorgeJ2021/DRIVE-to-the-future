@@ -57,6 +57,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""HorizontalRot"",
+                    ""type"": ""Value"",
+                    ""id"": ""f51cd625-1612-457e-b9d5-d75a257f1216"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -114,6 +122,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Handbrake"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94d56526-6379-4993-b91a-8e809778477c"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalRot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -127,6 +146,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Car_SteerLeft = m_Car.FindAction("SteerLeft", throwIfNotFound: true);
         m_Car_Deaccelerate = m_Car.FindAction("Deaccelerate", throwIfNotFound: true);
         m_Car_Handbrake = m_Car.FindAction("Handbrake", throwIfNotFound: true);
+        m_Car_HorizontalRot = m_Car.FindAction("HorizontalRot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -181,6 +201,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Car_SteerLeft;
     private readonly InputAction m_Car_Deaccelerate;
     private readonly InputAction m_Car_Handbrake;
+    private readonly InputAction m_Car_HorizontalRot;
     public struct CarActions
     {
         private @Controls m_Wrapper;
@@ -190,6 +211,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @SteerLeft => m_Wrapper.m_Car_SteerLeft;
         public InputAction @Deaccelerate => m_Wrapper.m_Car_Deaccelerate;
         public InputAction @Handbrake => m_Wrapper.m_Car_Handbrake;
+        public InputAction @HorizontalRot => m_Wrapper.m_Car_HorizontalRot;
         public InputActionMap Get() { return m_Wrapper.m_Car; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -214,6 +236,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Handbrake.started -= m_Wrapper.m_CarActionsCallbackInterface.OnHandbrake;
                 @Handbrake.performed -= m_Wrapper.m_CarActionsCallbackInterface.OnHandbrake;
                 @Handbrake.canceled -= m_Wrapper.m_CarActionsCallbackInterface.OnHandbrake;
+                @HorizontalRot.started -= m_Wrapper.m_CarActionsCallbackInterface.OnHorizontalRot;
+                @HorizontalRot.performed -= m_Wrapper.m_CarActionsCallbackInterface.OnHorizontalRot;
+                @HorizontalRot.canceled -= m_Wrapper.m_CarActionsCallbackInterface.OnHorizontalRot;
             }
             m_Wrapper.m_CarActionsCallbackInterface = instance;
             if (instance != null)
@@ -233,6 +258,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Handbrake.started += instance.OnHandbrake;
                 @Handbrake.performed += instance.OnHandbrake;
                 @Handbrake.canceled += instance.OnHandbrake;
+                @HorizontalRot.started += instance.OnHorizontalRot;
+                @HorizontalRot.performed += instance.OnHorizontalRot;
+                @HorizontalRot.canceled += instance.OnHorizontalRot;
             }
         }
     }
@@ -244,5 +272,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnSteerLeft(InputAction.CallbackContext context);
         void OnDeaccelerate(InputAction.CallbackContext context);
         void OnHandbrake(InputAction.CallbackContext context);
+        void OnHorizontalRot(InputAction.CallbackContext context);
     }
 }

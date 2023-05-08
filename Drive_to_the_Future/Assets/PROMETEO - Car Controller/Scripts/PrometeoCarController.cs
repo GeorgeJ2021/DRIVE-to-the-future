@@ -17,11 +17,12 @@ using UnityEngine.InputSystem;
 
 public class PrometeoCarController : MonoBehaviour
 {
-
+    
     //CAR SETUP
     Controls playercar;
     bool accctrl,turnL,turnR,deaccctrl,handbrakingval, cancelhandbraking;
 
+      
       [Space(20)]
       //[Header("CAR SETUP")]
       [Space(10)]
@@ -43,6 +44,9 @@ public class PrometeoCarController : MonoBehaviour
       public int decelerationMultiplier = 2; // How fast the car decelerates when the user is not using the throttle.
       [Range(1, 10)]
       public int handbrakeDriftMultiplier = 5; // How much grip the car loses when the user hit the handbrake.
+
+
+
       [Space(10)]
       public Vector3 bodyMassCenter; // This is a vector that contains the center of mass of the car. I recommend to set this value
                                     // in the points x = 0 and z = 0 of your car. You can select the value that you want in the y axis,
@@ -175,6 +179,7 @@ public class PrometeoCarController : MonoBehaviour
         playercar.Car.Deaccelerate.canceled += ctx => canceldeacceleratectrl();
         playercar.Car.Handbrake.performed += ctx => handbrakectrl();
         playercar.Car.Handbrake.canceled += ctx => cancelhandbrakectrl();
+
 
     }
     // Start is called before the first frame update
@@ -348,6 +353,7 @@ public class PrometeoCarController : MonoBehaviour
 
       }else{
         */
+        
         if(accctrl){
           CancelInvoke("DecelerateCar");
           deceleratingCar = false;
@@ -482,7 +488,6 @@ public class PrometeoCarController : MonoBehaviour
         //cancelhandbraking = true;
         handbrakingval = false;
     }
-
 
 
     // This method controls the car sounds. For example, the car engine will sound slow when the car speed is low because the
