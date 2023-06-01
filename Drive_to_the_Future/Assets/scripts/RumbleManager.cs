@@ -46,13 +46,12 @@ public class RumbleManager : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        /*    if (other.gameObject.tag == "wheel") 
-        {
-            Physics.IgnoreCollision(other, GetComponent<Collider>());
-        }*/
+        //Debug.Log("Collided");
+        
         if (other.gameObject.tag == "level") 
         {
-            Rumblestart(0.2f, 1f, 0.5f);
+            
+            Rumblestart(0.2f, 1f, 0.2f);
         }
         
     }
